@@ -1,12 +1,11 @@
 // import { useState } from 'react'
 import "./App.css";
-import logo from "./assets/images/logo.png"
-
+import logo from "./assets/images/logo.png";
 
 function App() {
   return (
     <>
-      <div className="main-menu-container">
+      <div className="main-menu-container hidden">
         <div className="title-text-container">
           <img src={logo} className="logo-img"></img>
           <h1>Match Card Game</h1>
@@ -18,10 +17,10 @@ function App() {
         </div>
       </div>
 
-      <div className="game-container" hidden>
+      <div className="game-container">
         <div className="header-container">
           <div className="game-title-text-container">
-            <h1>Lord of the Rings</h1>
+            <img src={logo} className="logo-img"></img>
             <h2>Match Card Game</h2>
           </div>
           <div className="score-container">
@@ -32,10 +31,10 @@ function App() {
 
         <div className="game-content-container">
           <div className="game-cards-container">
-            <div className="game-card">A</div>
-            <div className="game-card">B</div>
-            <div className="game-card">C</div>
-            <div className="game-card">D</div>
+            <div className="game-card">Frodo</div>
+            <div className="game-card">Frodo</div>
+            <div className="game-card">Frodo</div>
+            <div className="game-card">Frodo</div>
           </div>
           <div className="hint-container">
             <button>Hint</button>
