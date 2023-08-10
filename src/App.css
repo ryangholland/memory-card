@@ -1,0 +1,32 @@
+body {
+  background-color: rgb(40, 0, 59);
+  color: goldenrod;
+  padding: 2rem 1rem;
+  font-family: "Ringbearer", "Impact", "Arial Bold", sans-serif;
+}
+
+.main-menu-container {
+  display: grid;
+  place-items: center;
+}
+
+.title-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+.options-container {
+  margin-top: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}

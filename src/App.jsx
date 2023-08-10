@@ -1,18 +1,20 @@
 // import { useState } from 'react'
 import "./App.css";
+import logo from "./assets/images/logo.png"
+
 
 function App() {
   return (
     <>
       <div className="main-menu-container">
         <div className="title-text-container">
-          <h1>Lord of the Rings</h1>
-          <h2>Match Card Game</h2>
+          <img src={logo} className="logo-img"></img>
+          <h1>Match Card Game</h1>
         </div>
         <div className="options-container">
-          <h3>New Game</h3>
-          <h3>How to Play</h3>
-          <h3>About</h3>
+          <h2>New Game</h2>
+          <h2>How to Play</h2>
+          <h2>About</h2>
         </div>
       </div>
 
