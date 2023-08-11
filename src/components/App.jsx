@@ -81,7 +81,7 @@ function App() {
   return (
     <>
       <div className="main-menu-container hidden">
-        <div className="title-text-container">
+        <div className="title-text-container ">
           <img src={logo} className="logo-img"></img>
           <h1>Memory Card Game</h1>
         </div>
@@ -92,7 +92,7 @@ function App() {
         </div>
       </div>
 
-      <div className="game-container">
+      <div className="game-container ">
         <div className="header-container">
           <div className="game-title-text-container">
             <img src={logo} className="logo-img"></img>

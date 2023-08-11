@@ -5,11 +5,6 @@ body {
   font-family: "Ringbearer", "Impact", "Arial Bold", sans-serif;
 }
 
-.main-menu-container {
-  display: grid;
-  place-items: center;
-}
-
 .title-text-container,
 .game-title-text-container {
   display: flex;
@@ -19,7 +14,7 @@ body {
 }
 
 .options-container {
-  margin-top: 50%;
+  margin-top: 5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -30,23 +25,29 @@ body {
 .game-content-container {
   margin-top: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .game-cards-container {
   display: flex;
   gap: 0.5rem;
+  column-gap: 4%;
   flex-wrap: wrap;
 
   justify-content: center;
   align-items: center;
   padding: 0.25rem;
+
+  max-width: 450px;
 }
 
 .game-card {
   border: solid 1px goldenrod;
   border-radius: 5px;
-  height: 150px;
-  min-width: 150px;
+  height: 190px;
+  min-width: 140px;
 
   background-position: top;
   background-size: cover;
@@ -67,6 +68,33 @@ h1 {
   padding: 1rem;
   margin-top: 1rem;
 }
+
+@media (min-width: 650px) {
+  
+
+  .game-card {
+    height: 350px;
+    min-width: 225px;
+  }
+
+  .game-cards-container {
+    display: flex;
+    gap: 0.5rem;
+    column-gap: 2rem;
+    flex-wrap: wrap;
+  
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem;
+  
+    max-width: 1200px;
+  }
+  
+  .main {
+    padding: 2rem;
+  }
+}
+
 
 .hidden {
   display: none !important;
