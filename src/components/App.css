@@ -67,6 +67,19 @@ h1 {
 .hint-container {
   padding: 1rem;
   margin-top: 1rem;
+  min-height: 100px;
+  width: 90%;
+  /*
+  border: solid 1px goldenrod;
+  border-radius: 5px;
+  */
+}
+
+button {
+  background-color: goldenrod;
+  color: rgb(40, 0, 59);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
 }
 
 @media (min-width: 650px) {
@@ -89,9 +102,27 @@ h1 {
   
     max-width: 1200px;
   }
+
+  .main-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  body { 
+    height: 100vh;
+    display: grid;
+    place-items: center;
+  }
   
   .main {
     padding: 2rem;
+  }
+
+  .hint-container {
+    min-height: 150px;
+    max-width: 500px;
+    margin-top: 2.5rem;
   }
 }
 

@@ -52,11 +52,16 @@ function App() {
     },
   ];
 
+  const [currScore, setCurrScore] = useState(0);
+  const [highSchore, setHighScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [activeCharacters, setActiveCharacters] = useState(characters);
+
   const generateChoices = () => {
     const activeChoices = [];
 
     // Pick a character that has NOT been guessed
-    const unguessedCharacters = characters.filter(
+    const unguessedCharacters = activeCharacters.filter(
       (character) => !character.guessed
     );
     let choice =
@@ -67,7 +72,8 @@ function App() {
 
     // Pick 3 more characters
     do {
-      choice = characters[Math.floor(Math.random() * characters.length)];
+      choice =
+        activeCharacters[Math.floor(Math.random() * activeCharacters.length)];
       if (!activeChoices.includes(choice)) activeChoices.push(choice);
     } while (activeChoices.length < 4);
 
@@ -76,7 +82,24 @@ function App() {
 
   const [activeChoices, setActiveChoices] = useState(generateChoices);
 
-  console.log(activeChoices);
+  const makeGuess = (id) => {
+    const guess = activeCharacters.find((character) => character.id === id);
+
+    if (guess.guessed || currScore === 8) {
+      console.log("Game over.");
+      setGameOver(true);
+    } else {
+      setActiveCharacters(
+        activeCharacters.map((character) => {
+          if (character.id === id) character.guessed = true;
+          return character;
+        })
+      );
+      setCurrScore((currScore) => currScore + 1);
+      setActiveChoices(generateChoices);
+    }
+
+  };
 
   return (
     <>
@@ -100,16 +123,16 @@ function App() {
           </div>
           <div className="score-container">
             <h3>High Score: 0</h3>
-            <h3>Current Score: 0</h3>
+            <h3>Current Score: {currScore}</h3>
           </div>
         </div>
 
         <div className="game-content-container">
           <div className="game-cards-container">
-            {activeChoices.map(choice => {
+            {activeChoices.map((choice) => {
               return (
-                <GameCard {...choice} key={choice.id} />
-              )
+                <GameCard {...choice} key={choice.id} makeGuess={makeGuess} />
+              );
             })}
             {/*
             <div className="game-card">Frodo</div>
