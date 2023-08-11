@@ -8,55 +8,46 @@ function App() {
     {
       id: 1,
       name: "Frodo",
-      file: "frodo.webp",
       guessed: false,
     },
     {
       id: 2,
       name: "Sam",
-      file: "sam.webp",
       guessed: false,
     },
     {
       id: 3,
       name: "Pippin",
-      file: "pippin.webp",
       guessed: false,
     },
     {
       id: 4,
       name: "Merry",
-      file: "merry.webp",
       guessed: false,
     },
     {
       id: 5,
       name: "Gandalf",
-      file: "gandalf.webp",
       guessed: false,
     },
     {
       id: 6,
       name: "Aragorn",
-      file: "aragorn.webp",
       guessed: false,
     },
     {
       id: 7,
       name: "Gimli",
-      file: "gimli.webp",
       guessed: false,
     },
     {
       id: 8,
       name: "Legolas",
-      file: "legolas.webp",
       guessed: false,
     },
     {
       id: 9,
       name: "Boromir",
-      file: "boromir.webp",
       guessed: false,
     },
   ];
@@ -117,7 +108,7 @@ function App() {
           <div className="game-cards-container">
             {activeChoices.map(choice => {
               return (
-                <GameCard key={choice.id} />
+                <GameCard {...choice} key={choice.id} />
               )
             })}
             {/*

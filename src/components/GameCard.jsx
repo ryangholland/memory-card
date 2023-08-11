@@ -1,7 +1,14 @@
-function GameCard() {
+/* eslint-disable react/prop-types */
+
+function GameCard({ name, guessed }) {
   return (
     <>
-      <div className="game-card">Frodo</div>
+      <div
+        className="game-card"
+        style={{ backgroundImage: `url(/${name.toLowerCase()}.webp)` }}
+      >
+        {name}
+      </div>
     </>
   );
 }
