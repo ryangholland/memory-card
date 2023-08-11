@@ -101,11 +101,21 @@ function App() {
     }
   };
 
+  /*
   useEffect(() => {
     if (gameOver) {
       console.log("this effect runs on game over");
     }
   }, [gameOver]);
+  */
+
+  const resetGame = () => {
+    console.log("hello");
+    setActiveCharacters(characters);
+    if (currScore > highScore) setHighScore(currScore);
+    setCurrScore(0);
+    setGameOver(false);
+  };
 
   console.log(activeScreen);
 
@@ -141,8 +151,12 @@ function App() {
             <h2>Memory Card Game</h2>
           </div>
           <div className="score-container">
-            <h3>High Score: 0</h3>
-            <h3>Current Score: {currScore}</h3>
+            <h3>
+              High Score: <span>{highScore}</span>
+            </h3>
+            <h3>
+              Current Score: <span>{currScore}</span>
+            </h3>
           </div>
         </div>
 
@@ -164,8 +178,15 @@ function App() {
         <h2>{currScore === 9 ? "You win!" : "Game over!"}</h2>
         <h2>Your score was {currScore} / 9</h2>
         <img src={currScore === 9 ? "/win.gif" : "/lose.gif"} alt="#" />
-        <button>Play Again</button>
-        <button>Main Menu</button>
+        <button onClick={() => resetGame()}>Play Again</button>
+        <button
+          onClick={() => {
+            resetGame();
+            setActiveScreen("main");
+          }}
+        >
+          Main Menu
+        </button>
       </dialog>
     </>
   );
