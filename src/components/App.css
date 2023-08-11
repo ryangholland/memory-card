@@ -230,3 +230,12 @@ span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.25rem;
 }
+
+.instructions-container {
+  max-width: 500px;
+}
+
+.instructions-container h3 {
+  padding: 0.85rem;
+  margin: 1rem;
+}

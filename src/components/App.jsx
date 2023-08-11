@@ -130,7 +130,9 @@ function App() {
         </div>
         <div className="options-container">
           <button onClick={() => setActiveScreen("game")}>New Game</button>
-          <button>How to Play</button>
+          <button onClick={() => setActiveScreen("howtoplay")}>
+            How to Play
+          </button>
           <button>About</button>
         </div>
       </div>
@@ -167,19 +169,21 @@ function App() {
             <button>Hint</button>
           </div>
           <button
-          onClick={() => {
-            resetGame();
-            setActiveScreen("main");
-          }}
-        >
-          Quit Game
-        </button>
+            onClick={() => {
+              resetGame();
+              setActiveScreen("main");
+            }}
+          >
+            Quit Game
+          </button>
         </div>
       </div>
 
       <dialog className={`${!gameOver && "hidden"}`}>
         <h2>{currScore === 9 ? "You win!" : "Game over!"}</h2>
-        <h2>Your score was <span>{currScore} / 9</span></h2>
+        <h2>
+          Your score was <span>{currScore} / 9</span>
+        </h2>
         <img src={currScore === 9 ? "/win.gif" : "/lose.gif"} alt="#" />
         <button onClick={() => resetGame()}>Play Again</button>
         <button
@@ -191,6 +195,35 @@ function App() {
           Main Menu
         </button>
       </dialog>
+
+      <div
+        className={`main-menu-container ${
+          activeScreen !== "howtoplay" && "hidden"
+        }`}
+      >
+        <div className="title-text-container ">
+          <img src={logo} className="logo-img"></img>
+          <h1>Memory Card Game</h1>
+          <div className="instructions-container">
+            <h3>
+              1. Select all members of the fellowship, but don't click the same
+              character twice!
+            </h3>
+            <h3>
+              2. Need help? Press the hint button to get a quote from an unguessed
+              character.
+            </h3>
+          </div>
+          <button
+            onClick={() => {
+              resetGame();
+              setActiveScreen("main");
+            }}
+          >
+            Main Menu
+          </button>
+        </div>
+      </div>
     </>
   );
 }
