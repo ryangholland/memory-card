@@ -129,14 +129,9 @@ function App() {
           <h1>Memory Card Game</h1>
         </div>
         <div className="options-container">
-          <button
-            className="options-btn"
-            onClick={() => setActiveScreen("game")}
-          >
-            New Game
-          </button>
-          <h2>How to Play</h2>
-          <h2>About</h2>
+          <button onClick={() => setActiveScreen("game")}>New Game</button>
+          <button>How to Play</button>
+          <button>About</button>
         </div>
       </div>
 
@@ -176,7 +171,7 @@ function App() {
 
       <dialog className={`${!gameOver && "hidden"}`}>
         <h2>{currScore === 9 ? "You win!" : "Game over!"}</h2>
-        <h2>Your score was {currScore} / 9</h2>
+        <h2>Your score was <span>{currScore} / 9</span></h2>
         <img src={currScore === 9 ? "/win.gif" : "/lose.gif"} alt="#" />
         <button onClick={() => resetGame()}>Play Again</button>
         <button
