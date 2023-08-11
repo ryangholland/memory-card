@@ -166,6 +166,14 @@ function App() {
           <div className="hint-container">
             <button>Hint</button>
           </div>
+          <button
+          onClick={() => {
+            resetGame();
+            setActiveScreen("main");
+          }}
+        >
+          Quit Game
+        </button>
         </div>
       </div>
 

@@ -8,7 +8,7 @@ function GameCard({ id, name, makeGuess }) {
         style={{ backgroundImage: `url(/${name.toLowerCase()}.webp)` }}
         onClick={() => makeGuess(id)}
       >
-        {name}
+        <h4>{name}</h4>
       </div>
     </>
   );
