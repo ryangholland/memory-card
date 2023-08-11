@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import logo from "../assets/images/logo.png";
 import GameCard from "./GameCard";
@@ -52,8 +52,9 @@ function App() {
     },
   ];
 
+  const [activeScreen, setActiveScreen] = useState("main");
   const [currScore, setCurrScore] = useState(0);
-  const [highSchore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [activeCharacters, setActiveCharacters] = useState(characters);
 
@@ -85,8 +86,8 @@ function App() {
   const makeGuess = (id) => {
     const guess = activeCharacters.find((character) => character.id === id);
 
-    if (guess.guessed || currScore === 8) {
-      console.log("Game over.");
+    if (guess.guessed || currScore >= 8) {
+      if (!guess.guessed) setCurrScore((currScore) => currScore + 1);
       setGameOver(true);
     } else {
       setActiveCharacters(
@@ -100,21 +101,40 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (gameOver) {
+      console.log("this effect runs on game over");
+    }
+  }, [gameOver]);
+
+  console.log(activeScreen);
+
   return (
     <>
-      <div className="main-menu-container hidden">
+      <div
+        className={`main-menu-container ${activeScreen !== "main" && "hidden"}`}
+      >
         <div className="title-text-container ">
           <img src={logo} className="logo-img"></img>
           <h1>Memory Card Game</h1>
         </div>
         <div className="options-container">
-          <h2>New Game</h2>
+          <button
+            className="options-btn"
+            onClick={() => setActiveScreen("game")}
+          >
+            New Game
+          </button>
           <h2>How to Play</h2>
           <h2>About</h2>
         </div>
       </div>
 
-      <div className="game-container overlay">
+      <div
+        className={`game-container ${activeScreen !== "game" && "hidden"} ${
+          gameOver && "overlay"
+        }`}
+      >
         <div className="header-container">
           <div className="game-title-text-container">
             <img src={logo} className="logo-img"></img>
@@ -133,12 +153,6 @@ function App() {
                 <GameCard {...choice} key={choice.id} makeGuess={makeGuess} />
               );
             })}
-            {/*
-            <div className="game-card">Frodo</div>
-            <div className="game-card">Frodo</div>
-            <div className="game-card">Frodo</div>
-            <div className="game-card">Frodo</div>
-            */}
           </div>
           <div className="hint-container">
             <button>Hint</button>
@@ -146,9 +160,10 @@ function App() {
         </div>
       </div>
 
-      <dialog >
-        <h2>Game over!</h2>
-        <img src="/lose.gif" alt="#" />
+      <dialog className={`${!gameOver && "hidden"}`}>
+        <h2>{currScore === 9 ? "You win!" : "Game over!"}</h2>
+        <h2>Your score was {currScore} / 9</h2>
+        <img src={currScore === 9 ? "/win.gif" : "/lose.gif"} alt="#" />
         <button>Play Again</button>
         <button>Main Menu</button>
       </dialog>
