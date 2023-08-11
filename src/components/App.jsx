@@ -98,7 +98,6 @@ function App() {
       setCurrScore((currScore) => currScore + 1);
       setActiveChoices(generateChoices);
     }
-
   };
 
   return (
@@ -115,7 +114,7 @@ function App() {
         </div>
       </div>
 
-      <div className="game-container ">
+      <div className="game-container overlay">
         <div className="header-container">
           <div className="game-title-text-container">
             <img src={logo} className="logo-img"></img>
@@ -146,6 +145,13 @@ function App() {
           </div>
         </div>
       </div>
+
+      <dialog >
+        <h2>Game over!</h2>
+        <img src="/lose.gif" alt="#" />
+        <button>Play Again</button>
+        <button>Main Menu</button>
+      </dialog>
     </>
   );
 }
