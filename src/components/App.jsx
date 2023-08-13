@@ -9,46 +9,55 @@ function App() {
       id: 1,
       name: "Frodo",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfc15",
     },
     {
       id: 2,
       name: "Sam",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfd0d",
     },
     {
       id: 3,
       name: "Pippin",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfe2e",
     },
     {
       id: 4,
       name: "Merry",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfc7c",
     },
     {
       id: 5,
       name: "Gandalf",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfea0",
     },
     {
       id: 6,
       name: "Aragorn",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfbe6",
     },
     {
       id: 7,
       name: "Gimli",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfd23",
     },
     {
       id: 8,
       name: "Legolas",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfd81",
     },
     {
       id: 9,
       name: "Boromir",
       guessed: false,
+      quoteID: "5cd99d4bde30eff6ebccfc57",
     },
   ];
 
@@ -104,64 +113,33 @@ function App() {
   const getQuote = () => {
     console.log("getQuote function runs");
 
+    const unguessedChoices = activeChoices.filter((choice) => !choice.guessed);
+    const randomCharacter =
+      unguessedChoices[Math.floor(Math.random() * unguessedChoices.length)];
+
     const headers = {
       Accept: "application/json",
       Authorization: "Bearer O1Fp801wvJOmnR3Bcq3U",
     };
+
     const fetchData = async () => {
-      const rawFrodoQuotes = await fetch(
-        "https://the-one-api.dev/v2/character/5cd99d4bde30eff6ebccfc15/quote",
+      const rawQuotes = await fetch(
+        `https://the-one-api.dev/v2/character/${randomCharacter.quoteID}/quote`,
         {
           headers: headers,
         }
       );
-      const frodoQuoteData = await rawFrodoQuotes.json();
-      const frodoQuotes = frodoQuoteData.docs;
-      const filteredFrodoQuotes = frodoQuotes.filter(
-        (quote) => quote.dialog.length > 50
-      );
+      const quoteData = await rawQuotes.json();
+      const quotes = quoteData.docs;
+      const filteredQuotes = quotes.filter((quote) => quote.dialog.length > 50);
       const randomQuote =
-        filteredFrodoQuotes[
-          Math.floor(Math.random() * filteredFrodoQuotes.length)
-        ];
+        filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
 
       console.log(randomQuote.dialog);
-
-      /*
-      Name: Frodo Baggins - ID: 5cd99d4bde30eff6ebccfc15
-      Name: Samwise Gamgee ID: 5cd99d4bde30eff6ebccfd0d
-      Name: Peregrin Took ID: 5cd99d4bde30eff6ebccfe2e
-      Name: Meriadoc Brandybuck ID: 5cd99d4bde30eff6ebccfc7c
-      Name: Gandalf ID: 5cd99d4bde30eff6ebccfea0
-      Name: Aragorn II Elessar ID: 5cd99d4bde30eff6ebccfbe6
-      Name: Gimli ID: 5cd99d4bde30eff6ebccfd23
-      Name: Legolas ID: 5cd99d4bde30eff6ebccfd81
-      Name: Boromir ID: 5cd99d4bde30eff6ebccfc57
-      */
-
-      /*
-      const quote = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
-      setQuote(quote.dialog);
-      const rawCharacters = await fetch(
-        "https://the-one-api.dev/v2/character?_id=" + quote.character,
-        { headers: headers }
-      );
-      const characters = await rawCharacters.json();
-      const character = characters.docs[0];
-      setCharacter(character.name);
-      */
     };
 
     fetchData();
   };
-
-  /*
-  useEffect(() => {
-    if (gameOver) {
-      console.log("this effect runs on game over");
-    }
-  }, [gameOver]);
-  */
 
   const resetGame = () => {
     setActiveCharacters(characters);
