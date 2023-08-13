@@ -134,7 +134,7 @@ p {
     height: 100vh;
     display: grid;
     place-items: center;
-    background-image: url("./bg.jpg");
+    background-image: url("/bg.jpg");
     background-size: stretch;
   }
 
