@@ -101,6 +101,60 @@ function App() {
     }
   };
 
+  const getQuote = () => {
+    console.log("getQuote function runs");
+
+    const headers = {
+      Accept: "application/json",
+      Authorization: "Bearer O1Fp801wvJOmnR3Bcq3U",
+    };
+    const fetchData = async () => {
+      const rawFrodoQuotes = await fetch(
+        "https://the-one-api.dev/v2/character/5cd99d4bde30eff6ebccfc15/quote",
+        {
+          headers: headers,
+        }
+      );
+      const frodoQuoteData = await rawFrodoQuotes.json();
+      const frodoQuotes = frodoQuoteData.docs;
+      const filteredFrodoQuotes = frodoQuotes.filter(
+        (quote) => quote.dialog.length > 50
+      );
+      const randomQuote =
+        filteredFrodoQuotes[
+          Math.floor(Math.random() * filteredFrodoQuotes.length)
+        ];
+
+      console.log(randomQuote.dialog);
+
+      /*
+      Name: Frodo Baggins - ID: 5cd99d4bde30eff6ebccfc15
+      Name: Samwise Gamgee ID: 5cd99d4bde30eff6ebccfd0d
+      Name: Peregrin Took ID: 5cd99d4bde30eff6ebccfe2e
+      Name: Meriadoc Brandybuck ID: 5cd99d4bde30eff6ebccfc7c
+      Name: Gandalf ID: 5cd99d4bde30eff6ebccfea0
+      Name: Aragorn II Elessar ID: 5cd99d4bde30eff6ebccfbe6
+      Name: Gimli ID: 5cd99d4bde30eff6ebccfd23
+      Name: Legolas ID: 5cd99d4bde30eff6ebccfd81
+      Name: Boromir ID: 5cd99d4bde30eff6ebccfc57
+      */
+
+      /*
+      const quote = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
+      setQuote(quote.dialog);
+      const rawCharacters = await fetch(
+        "https://the-one-api.dev/v2/character?_id=" + quote.character,
+        { headers: headers }
+      );
+      const characters = await rawCharacters.json();
+      const character = characters.docs[0];
+      setCharacter(character.name);
+      */
+    };
+
+    fetchData();
+  };
+
   /*
   useEffect(() => {
     if (gameOver) {
@@ -110,14 +164,11 @@ function App() {
   */
 
   const resetGame = () => {
-    console.log("hello");
     setActiveCharacters(characters);
     if (currScore > highScore) setHighScore(currScore);
     setCurrScore(0);
     setGameOver(false);
   };
-
-  console.log(activeScreen);
 
   return (
     <>
@@ -166,7 +217,7 @@ function App() {
             })}
           </div>
           <div className="hint-container">
-            <button>Hint</button>
+            <button onClick={() => getQuote()}>Hint</button>
           </div>
           <button
             onClick={() => {
@@ -210,8 +261,8 @@ function App() {
               character twice!
             </h3>
             <h3>
-              2. Need help? Press the hint button to get a quote from an unguessed
-              character.
+              2. Need help? Press the hint button to get a quote from an
+              unguessed character.
             </h3>
           </div>
           <button
