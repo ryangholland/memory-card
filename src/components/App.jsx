@@ -91,6 +91,7 @@ function App() {
   };
 
   const [activeChoices, setActiveChoices] = useState(generateChoices);
+  const [hint, setHint] = useState(null);
 
   const makeGuess = (id) => {
     const guess = activeCharacters.find((character) => character.id === id);
@@ -106,13 +107,12 @@ function App() {
         })
       );
       setCurrScore((currScore) => currScore + 1);
+      setHint(null);
       setActiveChoices(generateChoices);
     }
   };
 
   const getQuote = () => {
-    console.log("getQuote function runs");
-
     const unguessedChoices = activeChoices.filter((choice) => !choice.guessed);
     const randomCharacter =
       unguessedChoices[Math.floor(Math.random() * unguessedChoices.length)];
@@ -135,7 +135,7 @@ function App() {
       const randomQuote =
         filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
 
-      console.log(randomQuote.dialog);
+      setHint(randomQuote.dialog);
     };
 
     fetchData();
@@ -145,6 +145,7 @@ function App() {
     setActiveCharacters(characters);
     if (currScore > highScore) setHighScore(currScore);
     setCurrScore(0);
+    setHint(null);
     setGameOver(false);
   };
 
@@ -195,7 +196,11 @@ function App() {
             })}
           </div>
           <div className="hint-container">
-            <button onClick={() => getQuote()}>Hint</button>
+            {hint ? (
+              <p>"{hint}"</p>
+            ) : (
+              <button onClick={() => getQuote()}>Hint</button>
+            )}
           </div>
           <button
             onClick={() => {
