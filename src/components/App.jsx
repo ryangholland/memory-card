@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import logo from "../assets/images/logo.png";
+import github from "../assets/images/github-mark-white.png";
 import GameCard from "./GameCard";
 
 function App() {
@@ -163,7 +164,7 @@ function App() {
           <button onClick={() => setActiveScreen("howtoplay")}>
             How to Play
           </button>
-          <button>About</button>
+          <button onClick={() => setActiveScreen("about")}>About</button>
         </div>
       </div>
 
@@ -250,7 +251,40 @@ function App() {
           </div>
           <button
             onClick={() => {
-              resetGame();
+              setActiveScreen("main");
+            }}
+          >
+            Main Menu
+          </button>
+        </div>
+      </div>
+
+      <div
+        className={`main-menu-container ${
+          activeScreen !== "about" && "hidden"
+        }`}
+      >
+        <div className="title-text-container ">
+          <img src={logo} className="logo-img"></img>
+          <h1>Memory Card Game</h1>
+          <div className="instructions-container">
+            <a href="https://github.com/ryangholland">
+              <h5>
+                <img src={github} className="github"></img>
+                Created by Ryan Holland
+              </h5>
+            </a>
+            <a href="https://the-one-api.dev/">
+              <h5>Character quotes courtesy of The One API</h5>
+            </a>
+            <h5>
+              Images are copyrighted (or assumed to be copyrighted) and
+              unlicensed. However, it is believed that the use of this work
+              qualifies as fair use under United States copyright law.
+            </h5>
+          </div>
+          <button
+            onClick={() => {
               setActiveScreen("main");
             }}
           >
