@@ -1,8 +1,15 @@
-# React + Vite
+# Memory Card Game
+[Live Link](https://quiet-lamington-8fb30c.netlify.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## General Info
+A memory card game that uses state to manage the player's selected cards, current score, and high score. Screen information is also stored in state, allowing the player to navigate through the UI while screens are dynamically rendered.
 
-Currently, two official plugins are available:
+## Technology Used
+- React
+- Vanilla CSS
+- Fetch API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Learning Outcomes
+- Improved understanding of React
+- Used state to dynamically render game screens
+- Used Fetch to get information from a third party API
